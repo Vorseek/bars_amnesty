@@ -37,7 +37,7 @@ export default App;
 
 
 const PageWrapper = styled.div`
-  height: 100vh;
+  height: calc(100vh - 100px);
   font-size: 50px;
 
   display: flex;

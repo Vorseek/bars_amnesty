@@ -1,29 +1,81 @@
 import styled from "styled-components";
+import React from "react";
 import './App.css';
 
 function App() {
-    const currentDay = new Date();
-    const finallyDay = new Date("2021-12-10T10:00:00");
-    const value = Math.floor((finallyDay - currentDay) / (1000 * 60 * 60 * 24));
+    const [date, setDate] = React.useState({});
+
+    setInterval(() => {
+        const currentDay = new Date();
+        const finallyDay = new Date("2021-12-10T10:00:00");
+        const msDate = finallyDay - currentDay;
+        const valueDay = Math.floor(msDate / (1000 * 60 * 60 * 24));
+        const valueHours = Math.floor((msDate / (1000 * 60 * 60) % 24));
+        const valueMinute = Math.floor((msDate / (1000 * 60)) % 60);
+        const valueSec = Math.floor((msDate / 1000) % 60);
+        const valueMs = Math.floor(msDate % 1000);
+
+        setDate({valueDay, valueHours, valueMinute, valueSec, valueMs});
+    }, 1)
 
 
-  return (
+    return (
     <PageWrapper className="App">
-      <PageTitle>Осталось {value} дней</PageTitle>
+        <h4>Осталось</h4>
+        <TimeWrapp>
+            <TimeBlock ><div>{date.valueDay}</div><div>Days</div></TimeBlock>
+            <TimeBlock ><div>{date.valueHours}</div> <div>Hours</div></TimeBlock>
+            <TimeBlock ><div>{date.valueMinute}</div> <div>Minutes</div></TimeBlock>
+            <TimeBlock ><div>{date.valueSec}</div> <div>Seconds</div></TimeBlock>
+            <TimeBlock ><div>{date.valueMs}</div> <div>Ms</div></TimeBlock>
+        </TimeWrapp>
     </PageWrapper>
   );
 }
 
 export default App;
 
-const PageTitle = styled.h1`
-  font-size: 70px;
-`;
 
 const PageWrapper = styled.div`
   height: 100vh;
+  font-size: 50px;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  background-color: #d3fdfd;
+  padding: 50px;
+  
+  h4 {
+    margin: 30px;
+  }
+`;
+
+const TimeWrapp = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+`;
+
+const TimeBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  min-width: 107px;
+
+  background-color: #b1e5f8;
+  border-radius: 20px;
+
+  div:first-child {
+    font-size: 50px;
+    border-radius: 20px;
+    background-color: #80ddff;
+    font-weight: bold;
+  }
+  div:last-child {
+    font-size: 50px;
+  }
 `;

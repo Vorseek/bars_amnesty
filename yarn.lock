@@ -7175,6 +7175,11 @@ lz-string@^1.4.4:
   resolved "https://registry.yarnpkg.com/lz-string/-/lz-string-1.4.4.tgz#c0d8eaf36059f705796e1e344811cf4c498d3a26"
   integrity sha1-wNjq82BZ9wV5bh40SBHPTEmNOiY=
 
+magic-snowflakes@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/magic-snowflakes/-/magic-snowflakes-6.0.0.tgz#bda0587b580aabfe663e7ec161ee6f3481bea12a"
+  integrity sha512-qZjxegIhfRirKiJmVVXV8yMu0UAHLewn11H3EbxVkOdjYMtcR9EPJqW0LQCzm3ItQAjME6icA81MmPBFdqG80g==
+
 magic-string@^0.25.0, magic-string@^0.25.7:
   version "0.25.7"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.25.7.tgz#3f497d6fd34c669c6798dcb821f2ef31f5445051"
@@ -10063,6 +10068,11 @@ snapdragon@^0.8.1:
     source-map "^0.5.6"
     source-map-resolve "^0.5.0"
     use "^3.1.0"
+
+snowflakes@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/snowflakes/-/snowflakes-1.0.6.tgz#eb9b49ae8e4352fd2d0b70b3db18c78aae0c9e90"
+  integrity sha1-65tJro5DUv0tC3Cz2xjHiq4MnpA=
 
 sockjs-client@^1.5.0:
   version "1.5.0"

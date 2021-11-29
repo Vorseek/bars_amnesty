@@ -1,11 +1,18 @@
 import styled from "styled-components";
 import React from "react";
+import Snowflakes from 'magic-snowflakes';
 import './App.css';
+
+const ValueBlock = React.memo(({value, title}) => (
+ <TimeBlock ><div>{value}</div><div>{title}</div></TimeBlock>
+));
+
+let interval;
 
 function App() {
     const [date, setDate] = React.useState({});
 
-    setInterval(() => {
+    interval = setInterval(() => {
         const currentDay = new Date();
         const finallyDay = new Date("2021-12-10T18:00:00");
         const msDate = finallyDay - currentDay;
@@ -16,18 +23,29 @@ function App() {
         const valueMs = Math.floor(msDate % 1000);
 
         setDate({valueDay, valueHours, valueMinute, valueSec, valueMs});
-    }, 1)
+    }, 250)
+
+    React.useEffect(() => {
+        const snowflakes = new Snowflakes({ count: 100, speed: 1.5 });
+        snowflakes.start();
+
+        return () => {
+            snowflakes.destroy();
+            clearInterval(interval);
+        }
+    }, []);
+
 
 
     return (
     <PageWrapper className="App">
         <h4>Осталось</h4>
         <TimeWrapp>
-            <TimeBlock ><div>{date.valueDay}</div><div>Days</div></TimeBlock>
-            <TimeBlock ><div>{date.valueHours}</div> <div>Hours</div></TimeBlock>
-            <TimeBlock ><div>{date.valueMinute}</div> <div>Minutes</div></TimeBlock>
-            <TimeBlock ><div>{date.valueSec}</div> <div>Seconds</div></TimeBlock>
-            <TimeBlock ><div>{date.valueMs}</div> <div>Ms</div></TimeBlock>
+            <ValueBlock value={date.valueDay} title="Days" />
+            <ValueBlock value={date.valueHours} title="Hours" />
+            <ValueBlock value={date.valueMinute} title="Minutes" />
+            <ValueBlock value={date.valueSec} title="Seconds" />
+            <ValueBlock value={date.valueMs} title="Ms" />
         </TimeWrapp>
     </PageWrapper>
   );

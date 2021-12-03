@@ -12,22 +12,22 @@ let interval;
 function App() {
     const [date, setDate] = React.useState({});
 
-    interval = setInterval(() => {
-        const currentDay = new Date();
-        const finallyDay = new Date("2021-12-10T18:00:00");
-        const msDate = finallyDay - currentDay;
-        const valueDay = Math.floor(msDate / (1000 * 60 * 60 * 24));
-        const valueHours = Math.floor((msDate / (1000 * 60 * 60) % 24));
-        const valueMinute = Math.floor((msDate / (1000 * 60)) % 60);
-        const valueSec = Math.floor((msDate / 1000) % 60);
-        const valueMs = Math.floor(msDate % 1000);
-
-        setDate({valueDay, valueHours, valueMinute, valueSec, valueMs});
-    }, 250)
-
     React.useEffect(() => {
         const snowflakes = new Snowflakes({ count: 100, speed: 1.5 });
         snowflakes.start();
+
+        interval = setInterval(() => {
+          const currentDay = new Date();
+          const finallyDay = new Date("2021-12-10T18:00:00");
+          const msDate = finallyDay - currentDay;
+          const valueDay = Math.floor(msDate / (1000 * 60 * 60 * 24));
+          const valueHours = Math.floor((msDate / (1000 * 60 * 60) % 24));
+          const valueMinute = Math.floor((msDate / (1000 * 60)) % 60);
+          const valueSec = Math.floor((msDate / 1000) % 60);
+          const valueMs = Math.floor(msDate % 1000);
+  
+          setDate({valueDay, valueHours, valueMinute, valueSec, valueMs});
+        }, 250)
 
         return () => {
             snowflakes.destroy();

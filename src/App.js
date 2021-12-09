@@ -132,6 +132,7 @@ const PageWrapper = styled.div`
 
   #star {
     position: fixed;
+    top: 0;
   }
 `;
 
